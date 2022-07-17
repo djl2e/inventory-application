@@ -14,16 +14,22 @@ router.get('/brand/create', category_controller.create_get);
 router.post('/brand/create', category_controller.create_post);
 
 // GET delete brand
-router.get('/brand/delete', category_controller.delete_get);
+router.get('/brand/:id/delete', category_controller.delete_get);
 
 // POST delete brand
-router.post('/brand/delete', category_controller.delete_post);
+router.post('/brand/:id/delete', category_controller.delete_post);
 
 // GET update brand
-router.get('/brand/update', category_controller.update_get)
+router.get('/brand/:id/update', category_controller.update_get);
 
 // POST update brand
-router.post('/brand/update', category_controller.update_post)
+router.post('/brand/:id/update', category_controller.update_post);
+
+// GET one brand
+router.get('/brand/:id', category_controller.detail);
+
+// GET all brands
+router.get('/brand', category_controller.list);
 
 // GET create shoes
 router.get('/shoes/create', item_controller.create_get);
@@ -32,15 +38,21 @@ router.get('/shoes/create', item_controller.create_get);
 router.post('/shoes/create', item_controller.create_post);
 
 // GET delete shoes
-router.get('/shoes/delete', item_controller.delete_get);
+router.get('/shoes/:id/delete', item_controller.delete_get);
 
 // POST delete shoes
-router.post('/shoes/delete', item_controller.delete_post);
+router.post('/shoes/:id/delete', item_controller.delete_post);
 
 // GET update shoes
-router.get('/shoes/update', item_controller.update_get)
+router.get('/shoes/:id/update', item_controller.update_get);
 
 // POST update shoes
-router.post('/shoes/update', item_controller.update_post)
+router.post('/shoes/:id/update', item_controller.update_post);
+
+// GET one pair of shoes
+router.get('/shoes/:id', item_controller.detail);
+
+// GET all shoes
+router.get('/shoes', item_controller.list);
 
 module.exports = router;

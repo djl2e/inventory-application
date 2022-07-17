@@ -25,3 +25,11 @@ exports.update_get = function(req, res, next) {
 exports.update_post = function(req, res, next) {
   res.send('NOT IMPLEMENTED');
 }
+
+exports.detail = function(req, res, next) {
+  res.send('NOT IMPLEMENTED');
+}
+
+exports.list = function(req, res, next) {
+  res.send('NOT IMPLEMENTED');
+}
