@@ -29,7 +29,7 @@ router.post('/brand/:id/update', category_controller.update_post);
 router.get('/brand/:id', category_controller.detail);
 
 // GET all brands
-router.get('/brand', category_controller.list);
+router.get('/brands', category_controller.list);
 
 // GET create shoes
 router.get('/shoes/create', item_controller.create_get);
