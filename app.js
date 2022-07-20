@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
 
@@ -11,12 +12,14 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-const mongoDB = 'mongodb+srv://cluster0:cluster0@cluster0.ttklr.mongodb.net/inventory_application?retryWrites=true&w=majority'
+const mongoDB = 'mongodb+srv://cluster0:cluster0@cluster0.ttklr.mongodb.net/inventory_application?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 // view engine setup
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
