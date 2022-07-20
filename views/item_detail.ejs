@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content">
+      <div class="detail-container">
+        <div class="detail">
+          <h1 class="shoe-title"><%= item.name %></h1>
+          <div class="shoe-brand-container">
+            <p class="shoe-brand-subtitle">Brand:</p>
+            <p class="shoe-brand"><%= item.category.name %></p>
+          </div>
+          <div class="shoe-price-container">
+            <p class="shoe-price-subtitle">Price:</p>
+            <p class="shoe-price">$<%= item.price %></p>
+          </div>
+          <% if (item.stock) { %>
+            <p class="in-stock">In Stock!</p>
+          <% } else { %>
+            <p class="sold-out">Sold Out</p>
+          <% } %>
+        </div>
+        <img 
+          class="shoe-img" 
+          src="/images/<%= item.img %>"
+          alt="<%= item.name %>"
+        >
+      </div>
+    </div>
+  </body>
+</html>

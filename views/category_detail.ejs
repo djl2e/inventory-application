@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content brand-detail-page">
+      <h1 class="brand-title"><%= category.name %></h1>
+      <div class="brand-shoes-container">
+        <% items.forEach(function(item) { %>
+          <a class="brand-shoes-item" href="../<%= item.url %>">
+            <h3 class="brand-shoes-name"><%= item.name %></h3>
+            <p class="brand-shoes-price">$<%= item.price %></p>
+            <% if (item.stock) { %>
+              <p class="in-stock">In Stock!</p>
+            <% } else { %>
+              <p class="sold-out">Sold Out</p>
+            <% } %>
+            <img 
+              class="brand-shoes-img" 
+              src="/images/<%= item.img %>"
+              alt="<%= item.name %>"
+            >
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+</html>

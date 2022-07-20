@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content brand-list-page">
+      <h1 class="all-shoes-title">All Brands</h1>
+      <a href="../brand/create" id="create-brand-link">+ Add New Brand</a>
+      <div class="brand-grid-container">
+        <% category_list.forEach(function(category) { %>
+          <a class="brand-grid-item" href="<%= category.url %>">
+            <img 
+              class="brand-img" 
+              src="/images/<%= category.img %>"
+              alt="<%= category.name %>"
+            >
+            <p class="brand-name"><%= category.name %></p>
+          </a>
+        <% }); %>
+      </div>
+    </div>
+  </body>
+</html>

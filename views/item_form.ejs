@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content">
+      <form method="POST" action="" class="item-form" enctype="multipart/form-data">
+        <label for="shoes-form-name">Shoe Name:</label>
+        <input 
+          type="text" 
+          id="shoes-form-name" 
+          name="shoes-form-name" 
+          required="true"
+        >
+        <label for="shoes-form-brand">Shoe Brand:</label>
+        <select name="shoes-form-brand" id="shoes-form-brand" required='true'>
+          <% categories.forEach(function(category) { %>
+            <option value="<%= category.name %>"><%= category.name %></option>
+          <% }) %>
+        </select>
+        <label for="shoes-form-price">Shoe Price:</label>
+        <input 
+          type="text" 
+          id="shoes-form-price" 
+          name="shoes-form-price"
+          required="true"
+        >
+        <label for="shoes-form-stock">Shoe In Stock:</label>
+        <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes" checked>
+        <label for="radio-in-stock">Yes</label>
+        <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no">
+        <label for="radio-no-stock">No</label>
+        <label for="shoes-form-image">Shoe Image:</label>
+        <input type="file" id="shoes-form-image" name="shoes-form-image">
+      </form>
+    </div>
+  </body>
+</html>

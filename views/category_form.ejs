@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content">
+      <form action="" method="POST" class="category-firm">
+        <label for="brand-form-name">Brand Name:</label>
+        <input 
+          type="text" 
+          id="brand-form-name" 
+          name="brand-form-name" 
+          required="true"
+        >
+        <label for="brand-form-image">Brand Image:</label>
+        <input type="file" id="brand-form-image" name="brand-form-image">
+      </form>
+    </div>
+  </body>
+</html>

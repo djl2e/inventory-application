@@ -5,7 +5,18 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <%- include('./header.ejs'); %>
+    <div class="home-page">
+      <h1 id="home-welcome">Welcome to ...</h1>
+      <div class="home-content">
+        <img src="/images/ball.jpg" alt="ball" id="ball-img">
+        <p>+</p>
+        <img src="/images/shoes.jpg" alt="shoes" id="shoes-img">
+        <p>+</p>
+        <img src="/images/locker.jpg" alt="locker" id="locker-img">
+        <p>=</p>
+        <p>:)</p>
+      </div>
+    </div>
   </body>
 </html>
