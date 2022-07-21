@@ -7,6 +7,13 @@
   <body>
     <%- include('./header.ejs'); %>
     <div class="content">
+      <h1 id="shoes-form-title">
+        <% if (update) { %>
+          Update Shoes Info:
+        <% } else { %>
+          New Shoes Info:
+        <% } %>
+      </h1>
       <form method="POST" action="" class="item-form" enctype="multipart/form-data">
         <label for="shoes-form-name">Shoe Name:</label>
         <input 
@@ -14,11 +21,20 @@
           id="shoes-form-name" 
           name="shoes-form-name" 
           required="true"
+          value="<%= name !== '' ? name : ''%>"
         >
         <label for="shoes-form-brand">Shoe Brand:</label>
         <select name="shoes-form-brand" id="shoes-form-brand" required='true'>
           <% categories.forEach(function(category) { %>
-            <option value="<%= category.name %>"><%= category.name %></option>
+            <% if (og_category != null && category._id.toString() == og_category._id) { %>
+              <option value="<%= category.name %>" selected>
+                <%= category.name %>
+              </option>
+            <% } else { %>
+              <option value="<%= category.name %>">
+                <%= category.name %>
+              </option>
+            <% } %>
           <% }) %>
         </select>
         <label for="shoes-form-price">Shoe Price:</label>
@@ -27,15 +43,44 @@
           id="shoes-form-price" 
           name="shoes-form-price"
           required="true"
+          value="<%= price !== null ? price : 0 %>"
         >
         <label for="shoes-form-stock">Shoe In Stock:</label>
-        <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes" checked>
-        <label for="radio-in-stock">Yes</label>
-        <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no">
-        <label for="radio-no-stock">No</label>
-        <label for="shoes-form-image">Shoe Image:</label>
-        <input type="file" id="shoes-form-image" name="shoes-form-image">
-        <button type="submit" id="shoes-form-submit">Add !</button>
+        <% if (!stock) { %>
+          <div class="radio-container">
+            <div class="radio-yes-container">
+              <label for="radio-in-stock">Yes</label>
+              <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes">
+            </div>
+            <div class="radio-no-container">
+              <label for="radio-no-stock">No</label>
+              <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no" checked>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="radio-container">
+            <div class="radio-yes-container">
+              <label for="radio-in-stock">Yes</label>
+              <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes" checked>
+            </div>
+            <div class="radio-no-container">
+              <label for="radio-no-stock">No</label>
+              <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no">
+            </div>
+          </div>
+        <% } %>
+        <label for="shoes-form-image" class="shoes-form-image-label">
+          <input type="file" id="shoes-form-image" name="shoes-form-image">
+          [ Shoes Image Upload ]
+        </label>
+        <% if (update) { %>
+          <div class="update-button-container">
+            <button id="shoes-form-submit" type="submit">Submit!</button>
+            <a id=shoes-form-cancel href="./">Go Back</a>  
+          </div>
+        <% } else { %>
+          <button type="submit" id="shoes-form-submit">Add!</button>
+        <% } %>
       </form>
     </div>
   </body>

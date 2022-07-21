@@ -7,7 +7,13 @@
   <body>
     <%- include('./header.ejs'); %>
     <div class="content brand-form-page">
-      <h1 id="brand-form-title">New Brand Info:</h1>
+      <h1 id="brand-form-title">
+        <% if (update) { %>
+          Update Brand Info:
+        <% } else { %>
+          New Brand Info:
+        <% } %>
+      </h1>
       <form action="" method="POST" class="category-firm" enctype="multipart/form-data">
         <label for="brand-form-name">Brand Name:</label>
         <input 
@@ -15,10 +21,21 @@
           id="brand-form-name" 
           name="brand-form-name" 
           required="true"
+          value="<%= name !== '' ? name : ''%>"
         >
-        <label for="brand-form-image">Brand Image:</label>
-        <input type="file" id="brand-form-image" name="brand-form-image">
-        <button id="brand-form-submit" type="submit">Add!</button>
+        <label for="brand-form-image" class="brand-form-image-label">
+          <input type="file" id="brand-form-image" name="brand-form-image">
+          [ Brand Image Upload ]
+        </label>
+
+        <% if (update) { %>
+          <div class="update-button-container">
+            <button id="brand-form-submit" type="submit">Submit!</button>
+            <a id=brand-form-cancel href="/brand/<%= id %>">Go Back</a>  
+          </div>
+        <% } else { %>
+          <button id="brand-form-submit" type="submit">Add!</button>
+        <% } %>
       </form>
     </div>
   </body>

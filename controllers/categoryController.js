@@ -6,7 +6,7 @@ const { body, validationResult } = require('express-validator');
 const { upload } = require('../multer-file');
 
 exports.create_get = function(req, res, next) {
-  res.render('category_form', { title: 'New Brand' });
+  res.render('category_form', { title: 'New Brand', name: '', update: false, id: '' });
 };
 
 exports.create_post = [
@@ -19,12 +19,12 @@ exports.create_post = [
     const formName = req.body['brand-form-name']   
 
     if (!errors.isEmpty()) {
-      res.render('category_form', { title: 'New Brand', name: formName})
+      res.render('category_form', { title: 'New Brand', name: formName, update: false, id: '' })
       return;
     } 
     else {
       Category.findOne({ 'name': formName })
-        .exec( function(err, found_category ) {
+        .exec( function(err, found_category) {
           if (err) { return next(err); }
 
           if (found_category) {
@@ -37,7 +37,6 @@ exports.create_post = [
             } else {
               imgName = 'no-image.png';
             }
-            
             const category = new Category({ name: formName, img: imgName });
             category.save(function (err) {
               if (err) { next(err); }
@@ -58,12 +57,47 @@ exports.delete_post = function(req, res, next) {
 };
 
 exports.update_get = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
+  Category.findById(req.params.id)
+    .exec(function(err, results) {
+      if (err) { return next(err); }
+      res.render('category_form', { title: 'Update Brand', name: results.name, update: true, id: req.params.id })
+    })
 };
 
-exports.update_post = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
-};
+exports.update_post = [
+  upload.single('brand-form-image'),
+
+  body('brand-form-name', 'Brand name required').trim().isLength({ min: 1 }).escape(),
+
+  (req, res, next) => {
+    const errors = validationResult(req);
+    const name = req.body['brand-form-name']
+
+    if (!errors.isEmpty()) {
+      res.render('category_form', { title: 'New Brand', name: name, update: false, id: req.params.id })
+      return;
+    } else {
+
+      let img = ''
+      if (req.file) {
+        img = req.file.filename;
+      } else  {
+        img = Category.findById(req.params.id).img;
+      }
+
+      const category = new Category({
+        name: name,
+        img: img,
+        _id: req.params.id,
+      })
+
+      Category.findByIdAndUpdate(req.params.id, category, {}, function(err, new_category) {
+        if (err) { return next(err); }
+        res.redirect('./');
+      })
+    }
+  }
+];
 
 exports.detail = function(req, res, next) {
   async.parallel({
