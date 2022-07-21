@@ -102,11 +102,18 @@ exports.create_post = [
 ];
 
 exports.delete_get = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
+  Item.findById(req.params.id)
+    .exec(function(err, results){
+      if (err) { return next(err); }
+      res.render('delete_confirmation', { title: 'Delete Item', name: results.name, is_brand: false, id: req.params.id });
+    })
 }
 
 exports.delete_post = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
+  Item.findByIdAndRemove(req.params.id, function(err) {
+    if (err) { return next(err); }
+    res.redirect('/shoes/')
+  })
 }
 
 exports.update_get = function(req, res, next) {

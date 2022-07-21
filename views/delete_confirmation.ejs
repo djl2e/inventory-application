@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('./header.ejs'); %>
+    <div class="content">
+      <form class="delete-confirmation-page" method="POST">
+        <h1 id="delete-question">
+          Delete "<%= name %>"?
+        </h1>
+        <div class="delete-button-container">
+          <button id="delete-submit" type="submit">Yes</button>
+          <% if (is_brand) { %>
+            <a id="delete-cancel" href="/brand/<%= id %>">Go Back</a>  
+          <% } else { %>
+            <a id="delete-cancel" href="/shoes/<%= id %>">Go Back</a>  
+          <% } %>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

@@ -243,6 +243,12 @@ form button {
   padding: 0;
 }
 
+form button:hover, form a:hover {
+  cursor: pointer;
+  transition: all 0.2s;
+  transform: scale(1.1);
+}
+
 /* Category Form */
 
 .brand-form-image-label, .shoes-form-image-label {
@@ -253,12 +259,6 @@ form button {
 .update-button-container {
   display: flex;
   gap: 30px;
-}
-
-form button:hover, .update-button-container a:hover {
-  cursor: pointer;
-  transition: all 0.2s;
-  transform: scale(1.1);
 }
 
 /* Item Form */
@@ -290,4 +290,17 @@ form button:hover, .update-button-container a:hover {
 .radio-yes-container, .radio-no-container {
   display: flex;
   align-items: center;
+}
+
+/* Delete Form */
+
+.delete-button-container {
+  margin-top: 30px;
+  display: flex;
+  gap: 30px;
+  font-size: 20px;
+}
+
+#delete-submit {
+  font-size: 20px;
 }

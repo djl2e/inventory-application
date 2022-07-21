@@ -49,11 +49,18 @@ exports.create_post = [
 ];
 
 exports.delete_get = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
+  Category.findById(req.params.id)
+    .exec(function(err, results){
+      if (err) { return next(err); }
+      res.render('delete_confirmation', { title: 'Delete Brand', name: results.name, is_brand: true, id: req.params.id });
+    })
 };
 
 exports.delete_post = function(req, res, next) {
-  res.send('NOT IMPLEMENTED');
+  Category.findByIdAndRemove(req.params.id, function(err) {
+    if (err) { return next(err); }
+    res.redirect('/brands/')
+  })
 };
 
 exports.update_get = function(req, res, next) {
@@ -78,7 +85,7 @@ exports.update_post = [
       return;
     } else {
 
-      let img = ''
+      let img = '';
       if (req.file) {
         img = req.file.filename;
       } else  {
