@@ -6,6 +6,8 @@ var logger = require('morgan');
 const bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
+const compression = require('compression');
+const helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -16,6 +18,9 @@ const mongoDB = 'mongodb+srv://cluster0:cluster0@cluster0.ttklr.mongodb.net/inve
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
+
+app.use(compression());
+app.use(helmet());
 
 // view engine setup
 app.use(bodyParser.urlencoded({ extended: false }));
