@@ -190,3 +190,8 @@ p {
   width: auto;
 }
 
+.shoe-link-container {
+  display: flex;
+  flex-direction: column;
+}
+

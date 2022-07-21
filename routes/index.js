@@ -11,7 +11,7 @@ router.get('/', item_controller.index);
 router.get('/brand/create', category_controller.create_get);
 
 // POST create brand
-router.post('/brand/create', category_controller.create_post);
+router.post('/brand/create',  category_controller.create_post);
 
 // GET delete brand
 router.get('/brand/:id/delete', category_controller.delete_get);

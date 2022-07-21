@@ -8,6 +8,10 @@
     <%- include('./header.ejs'); %>
     <div class="content brand-detail-page">
       <h1 class="brand-title"><%= category.name %></h1>
+      <div class="brand-link-container">
+        <a id="update-brand" href="/<%= category.url %>/update">● Update Brand</a>
+        <a id="delete-brand" href="/<%= category.url %>/delete">− Delete Brand</a>
+      </div>
       <div class="brand-shoes-container">
         <% items.forEach(function(item) { %>
           <a class="brand-shoes-item" href="../<%= item.url %>">

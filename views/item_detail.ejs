@@ -23,6 +23,10 @@
           <% } else { %>
             <p class="sold-out">Sold Out</p>
           <% } %>
+          <div class="shoe-link-container">
+            <a href="/<%= item.url %>/update" id="update-shoes">Update Shoes</a>
+            <a href="/<%= item.url %>/delete" id="delete-shoes">Delete Shoes</a>
+          </div>
         </div>
         <img 
           class="shoe-img" 

@@ -6,8 +6,9 @@
   </head>
   <body>
     <%- include('./header.ejs'); %>
-    <div class="content">
-      <form action="" method="POST" class="category-firm">
+    <div class="content brand-form-page">
+      <h1 id="brand-form-title">New Brand Info:</h1>
+      <form action="" method="POST" class="category-firm" enctype="multipart/form-data">
         <label for="brand-form-name">Brand Name:</label>
         <input 
           type="text" 
@@ -17,6 +18,7 @@
         >
         <label for="brand-form-image">Brand Image:</label>
         <input type="file" id="brand-form-image" name="brand-form-image">
+        <button id="brand-form-submit" type="submit">Add!</button>
       </form>
     </div>
   </body>
