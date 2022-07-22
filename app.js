@@ -9,12 +9,14 @@ const mongoose = require('mongoose');
 const compression = require('compression');
 const helmet = require('helmet');
 
+require('dotenv').config();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
 
-const mongoDB = 'mongodb+srv://cluster0:cluster0@cluster0.ttklr.mongodb.net/inventory_application?retryWrites=true&w=majority';
+const mongoDB = process.env.MONGO_DB;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
