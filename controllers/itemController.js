@@ -1,10 +1,21 @@
 const async = require('async');
+const nodeMailer = require('nodemailer');
 const { body, validationResult } = require('express-validator');
 const Item = require('../models/item');
 const Category = require('../models/category');
+const { getEmail } = require('../email-address');
+require('dotenv').config();
 
 const s3Upload = require('../aws-image/s3-upload');
 const s3Remove = require('../aws-image/s3-remove');
+
+const transporter = nodeMailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD
+  }
+});
 
 exports.create_get = function (req, res, next) {
   Category.find({})
@@ -133,18 +144,50 @@ exports.delete_post = function (req, res, next) {
   });
 };
 
+exports.stock_post = function (req, res, next) {
+  Item.findById(req.params.id, (err, item) => {
+    if (err) {
+      return next(err);
+    }
+
+    item.stock += 1;
+
+    Item.findByIdAndUpdate(req.params.id, item, {}, (err, item) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect(`/${item.url}`);
+    });
+  });
+};
+
 exports.sell_post = function (req, res, next) {
   Item.findById(req.params.id, (err, item) => {
     if (err) {
       return next(err);
     }
-    if (item.stock <= 0) {
+    if (item.stock === 0) {
       const err = new Error('Sold out already');
       err.status = 404;
       return next(err);
     }
 
     item.stock -= 1;
+
+    if (item.stock === 0 && getEmail() !== '') {
+      const mailOptions = {
+        from: process.env.EMAIL,
+        to: getEmail(),
+        subject: `${item.name} out of stock!`,
+        text: `${item.name} is out of stock. Please re-stock.`
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.log(error);
+        }
+        console.log(info);
+      });
+    }
     Item.findByIdAndUpdate(req.params.id, item, {}, (err, item) => {
       if (err) {
         return next(err);
@@ -235,6 +278,21 @@ exports.update_post = [
           stock: req.body['shoes-form-stock'],
           _id: req.params.id
         });
+
+        if (shoes.stock === 0 && getEmail() !== '') {
+          const mailOptions = {
+            from: process.env.EMAIL,
+            to: getEmail(),
+            subject: `${shoes.name} out of stock!`,
+            text: `${shoes.name} is out of stock. Please re-stock.`
+          };
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              console.log(error);
+            }
+            console.log(info);
+          });
+        }
 
         const file = req.files['shoes-form-image'] ? req.files['shoes-form-image'][0] : null;
 

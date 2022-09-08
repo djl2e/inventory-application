@@ -30,6 +30,9 @@
             </div>
           <% } %>
           <div class="shoe-link-container">
+            <form action="/<%= item.url %>/stock" method="POST">
+              <button id="stock-shoes">+ Stock Up a Pair</button>
+            </form>
             <% if (item.stock > 0) { %>
               <form action="/<%= item.url %>/sell" method="POST">
                 <button id="sell-shoes">> Sell a Pair</button>

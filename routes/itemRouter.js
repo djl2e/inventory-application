@@ -17,6 +17,9 @@ router.get('/:id/delete', itemController.delete_get);
 router.post('/:id/delete', itemController.delete_post);
 
 // POST sell shoes
+router.post('/:id/stock', itemController.stock_post);
+
+// POST sell shoes
 router.post('/:id/sell', itemController.sell_post);
 
 // GET update shoes

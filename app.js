@@ -12,6 +12,7 @@ require('dotenv').config();
 
 const itemRouter = require('./routes/itemRouter');
 const categoryRouter = require('./routes/categoryRouter');
+const emailRouter = require('./routes/emailRouter');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(compression());
 
 app.get('/', (req, res) => res.redirect('/shoes'));
 
+app.use('/email', emailRouter);
 app.use('/shoes', itemRouter);
 app.use('/brand', categoryRouter);
 

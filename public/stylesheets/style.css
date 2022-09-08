@@ -73,7 +73,7 @@ p {
 
 .route-links {
   display: flex;
-  width: 20%;
+  width: 30%;
   justify-content: space-between;
   font-size: 25px;
 }
@@ -198,6 +198,7 @@ p {
 .shoe-img {
   max-height: 400px;
   width: auto;
+  margin-top: 50px;
 }
 
 .shoe-link-container {
@@ -212,7 +213,11 @@ p {
   transform: scale(1.1);
 }
 
-#sell-shoes {
+.shoe-link-container form {
+  margin: 0;
+}
+
+#stock-shoes, #sell-shoes {
   font-size: 18px;
 }
 
