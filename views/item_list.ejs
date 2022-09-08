@@ -14,14 +14,14 @@
           <a href="<%= item.url %>" class="all-shoes-item">
             <h3 class="all-shoes-name"><%= item.name %></h3>
             <p class="all-shoes-price">$<%= item.price %></p>
-            <% if (item.stock) { %>
-              <p class="in-stock">In Stock!</p>
+            <% if (item.stock > 0) { %>
+              <p class="in-stock">In Stock</p>
             <% } else { %>
               <p class="sold-out">Sold Out</p>
             <% } %>
             <img 
               class="all-shoes-img" 
-              src="/images/<%= item.img %>"
+              src="https:/<%= process.env.AWS_BUCKET %>.s3.us-east-1.amazonaws.com/<%= item.img %>"
               alt="<%= item.name %>"
             >
           </a>

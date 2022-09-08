@@ -46,29 +46,13 @@
           value="<%= price !== null ? price : 0 %>"
         >
         <label for="shoes-form-stock">Shoe In Stock:</label>
-        <% if (!stock) { %>
-          <div class="radio-container">
-            <div class="radio-yes-container">
-              <label for="radio-in-stock">Yes</label>
-              <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes">
-            </div>
-            <div class="radio-no-container">
-              <label for="radio-no-stock">No</label>
-              <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no" checked>
-            </div>
-          </div>
-        <% } else { %>
-          <div class="radio-container">
-            <div class="radio-yes-container">
-              <label for="radio-in-stock">Yes</label>
-              <input type="radio" name="shoes-form-stock" id="radio-in-stock" value="yes" checked>
-            </div>
-            <div class="radio-no-container">
-              <label for="radio-no-stock">No</label>
-              <input type="radio" name="shoes-form-stock" id="radio-no-stock" value="no">
-            </div>
-          </div>
-        <% } %>
+        <input 
+          type="text" 
+          id="shoes-form-stock" 
+          name="shoes-form-stock"
+          required="true"
+          value="<%= stock !== null ? stock : 0 %>"
+        >
         <label for="shoes-form-image" class="shoes-form-image-label">
           <input type="file" id="shoes-form-image" name="shoes-form-image">
           [ Shoes Image Upload ]

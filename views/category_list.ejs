@@ -14,7 +14,7 @@
           <a class="brand-grid-item" href="<%= category.url %>">
             <img 
               class="brand-img" 
-              src="/images/<%= category.img %>"
+              src="https:/<%= process.env.AWS_BUCKET %>.s3.us-east-1.amazonaws.com/<%= category.img %>"
               alt="<%= category.name %>"
             >
             <p class="brand-name"><%= category.name %></p>

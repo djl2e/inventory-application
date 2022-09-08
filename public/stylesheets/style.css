@@ -188,7 +188,7 @@ p {
   font-size: 40px;
 }
 
-.shoe-brand-container, .shoe-price-container {
+.shoe-brand-container, .shoe-price-container, .shoe-stock-container {
   display: flex;
   align-items: flex-end;
   gap: 15px;
@@ -210,6 +210,10 @@ p {
 .shoe-link-container a:hover {
   transition: all 0.2s;
   transform: scale(1.1);
+}
+
+#sell-shoes {
+  font-size: 18px;
 }
 
 /* Form */

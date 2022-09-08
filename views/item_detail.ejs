@@ -18,19 +18,30 @@
             <p class="shoe-price-subtitle">Price:</p>
             <p class="shoe-price">$<%= item.price %></p>
           </div>
-          <% if (item.stock) { %>
-            <p class="in-stock">In Stock!</p>
+          <% if (item.stock > 0) { %>
+          <div class="shoe-stock-container in-stock">
+            <p class="shoe-stock-subtitle">Stock:</p>
+            <p class="shoe-stock"><%= item.stock %></p>
+          </div>
           <% } else { %>
-            <p class="sold-out">Sold Out</p>
+            <div class="shoe-stock-container sold-out">
+              <p class="shoe-stock-subtitle">Stock:</p>
+              <p class="shoe-stock"><%= item.stock %></p>
+            </div>
           <% } %>
           <div class="shoe-link-container">
+            <% if (item.stock > 0) { %>
+              <form action="/<%= item.url %>/sell" method="POST">
+                <button id="sell-shoes">> Sell a Pair</button>
+              </form>
+            <% } %>
             <a href="/<%= item.url %>/update" id="update-shoes">● Update Shoes</a>
             <a href="/<%= item.url %>/delete" id="delete-shoes">− Delete Shoes</a>
           </div>
         </div>
         <img 
           class="shoe-img" 
-          src="/images/<%= item.img %>"
+          src="https:/<%= process.env.AWS_BUCKET %>.s3.us-east-1.amazonaws.com/<%= item.img %>"
           alt="<%= item.name %>"
         >
       </div>
