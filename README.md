@@ -5,10 +5,10 @@
 [Link to Deployed Project](https://floating-ravine-86506.herokuapp.com/)
 
 # Features
-- Create/update shoe products with name, brand, price, quantity, and image (optional) information
-- Create/update brands with a brand name and an image file (optional)
+- Shoe products with name, brand, price, quantity, and image (optional) information
+- Shoe brands with a brand name and an image file (optional)
 - Increment, decrement shoe quantity with a click
-- When there are no more shoes left in stock, an alert goes out to the owner's email
+- When shoes are out of stock, an alert goes out to the owner's email
 - Change email address by submiting the Alert Email form
 
 # Getting Started
