@@ -2,6 +2,8 @@
 
 > An inventory application that categorizes basketball shoes based on their brand name
 
+![](inventory_application_gif.gif)
+
 [Link to Deployed Project](https://floating-ravine-86506.herokuapp.com/)
 
 # Features
