@@ -26,7 +26,6 @@ cd inventory-application
 
 ```
 DATABASE_URL= <MongoDB URL>
-SECRET_KEY = <JWT Strategy Secret Key>
 AWS_SECRET_KEY = <AWS S3 Secret Ke>
 AWS_KEY_ID = <AWS S3 Access Key Id>
 AWS_BUCKET = <AWS S3 Bucket Name>
